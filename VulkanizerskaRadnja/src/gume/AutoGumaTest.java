@@ -105,13 +105,24 @@ public class AutoGumaTest {
 	
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		ag.setMarkaModel("Mini_Cooper");
+		ag.setPrecnik(13);
+		ag.setSirina(300);
+		ag.setVisina(70);
+		assertEquals("AutoGuma [markaModel=Mini_Cooper, precnik=13, sirina=300, visina=70]", ag.toString());
 	}
 
 	@Test
 	public void testEqualsObject() {
-		fail("Not yet implemented");
+		ag.setMarkaModel("Mini_Cooper");
+		ag.setPrecnik(15);
+		ag.setVisina(75);
+		ag.setSirina(305);
+		AutoGuma guma = new AutoGuma();
+		guma.setMarkaModel("Mini_Cooper");
+		guma.setPrecnik(15);
+		guma.setVisina(75);
+		guma.setSirina(313);
+		assertFalse(ag.equals(guma));
 	}
-
-
 }
