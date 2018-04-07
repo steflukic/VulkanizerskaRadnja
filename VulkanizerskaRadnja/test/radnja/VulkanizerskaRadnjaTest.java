@@ -2,8 +2,6 @@ package gume.radnja;
 
 import static org.junit.Assert.*;
 
-import java.util.LinkedList;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,7 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import gume.AutoGuma;
-import gume.radnja.VulkanizerskaRadnja;
 
 public class VulkanizerskaRadnjaTest {
 
@@ -40,80 +37,70 @@ public class VulkanizerskaRadnjaTest {
 
 	@Test
 	public void testDodajGumuPrviScenario() {
-		ag.setMarkaModel("nekaMarkaIModel");
+		ag.setMarkaModel("modelMarka");
 		vr.dodajGumu(ag);
 		assertEquals(1, vr.pronadjiGumu(ag.getMarkaModel()).size());
 	}
 
-	@Test
-	public void testDodajGumuPrviScenario1() {
-		ag.setMarkaModel("nekaMarkaIModel");
-		ag.setPrecnik(20);
-		ag.setSirina(221);
-		ag.setVisina(31);
-		vr.dodajGumu(ag);
-		LinkedList<AutoGuma> lista = vr.pronadjiGumu(ag.getMarkaModel());
-		assertEquals(ag, lista.getFirst());
+	// postoji greska u metodi pronadji gumu: ne moze da se poredi objekat sa
+	// stringom
+	// i zbog toga metoda uvek vraca praznu listu, odnosno,scenario kao da nije
+	// nasla ni jednu gumu.
+	// Greska ispravljena
+
+	@Test(expected = java.lang.NullPointerException.class)
+	public void testDodajGumuDrugiScenarioNull() {
+		vr.dodajGumu(null);
 	}
 
 	@Test(expected = java.lang.RuntimeException.class)
-	public void testDodajGumuDrugiScenarioVecPostoji() {
-		ag.setMarkaModel("markaModel1");
+	public void testDodajGumuVecPostoji() {
+		ag.setMarkaModel("modelMarka");
 		vr.dodajGumu(ag);
-		AutoGuma ag1 = new AutoGuma();
-		ag1.setMarkaModel("markaModel1");
-		vr.dodajGumu(ag1);
-	}
 
-	@Test(expected = java.lang.NullPointerException.class)
-	public void testDodajGumuTreciScenarioNullVrednost() {
-		vr.dodajGumu(null);
+		AutoGuma ag1 = new AutoGuma();
+		ag1.setMarkaModel("modelMarka");
+		vr.dodajGumu(ag1);
 	}
 
 	@Test
 	public void testPronadjiGumuPrviScenario() {
-		ag.setMarkaModel("nekaMarkaIModel");
+		ag.setMarkaModel("modelMarka");
 		vr.dodajGumu(ag);
 		assertEquals(1, vr.pronadjiGumu(ag.getMarkaModel()).size());
 	}
 
 	@Test
-	public void testPronadjiGumuPrviScenario1() {
-		ag.setMarkaModel("nekaMarkaIModel");
-		ag.setPrecnik(20);
-		ag.setSirina(221);
+	public void testPronadjiGumuDrugiScenarioNull() {
+		assertEquals(vr.pronadjiGumu(null), null);
+
+	}
+
+	@Test
+	public void testPronadjiGumuTreciScenarioNemaGume() {
+		ag.setMarkaModel("modelMarka1");
+		vr.dodajGumu(ag);
+		assertEquals(vr.pronadjiGumu("modelMarka").size(), 0);
+
+	}
+
+	@Test
+	public void testPronadjiGumuViseGuma() {
+
+		ag.setMarkaModel("guma1");
+		ag.setPrecnik(19);
+		ag.setSirina(204);
 		ag.setVisina(31);
 		vr.dodajGumu(ag);
-		LinkedList<AutoGuma> listica = vr.pronadjiGumu(ag.getMarkaModel());
-		assertEquals(ag, listica.getFirst());
-	}
 
-	@Test
-	public void testPronadjiGumuDrugiScenarioNemaGuma() {
-		ag.setMarkaModel("markaModel1");
-		vr.dodajGumu(ag);
-		assertEquals(vr.pronadjiGumu("markaModel2").size(), 0);
-
-	}
-
-	@Test
-	public void testPronadjiGumuTreciScenarioNull() {
-		assertEquals(vr.pronadjiGumu(null), null);
-	}
-
-	@Test
-	public void testPronadjiGumuCetvrtiScenarioViseGuma() {
-		ag.setMarkaModel("markaModel");
-		ag.setPrecnik(21);
-		ag.setSirina(223);
-		ag.setVisina(35);
-		vr.dodajGumu(ag);
 		AutoGuma ag1 = new AutoGuma();
-		ag1.setMarkaModel("markaModel");
-		ag1.setPrecnik(14);
-		ag1.setSirina(222);
-		ag1.setVisina(33);
+		ag1.setMarkaModel("guma1");
+		ag1.setPrecnik(20);
+		ag1.setSirina(200);
+		ag1.setVisina(30);
 		vr.dodajGumu(ag1);
+
 		assertEquals(vr.pronadjiGumu(ag.getMarkaModel()).size(), 2);
+
 	}
 }

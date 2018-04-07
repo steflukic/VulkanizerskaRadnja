@@ -1,34 +1,47 @@
 package gume;
 
 /**
+ * Klasa koja predstavlja jednu gumu
+ * 
  * @author Stefan Lukic
  * @version 1.0
- **/
+ *
+ */
 public class AutoGuma {
-
 	/**
-	 * Atribut marka predstavlja marku i model gume, dok se atributi precnik, sirina
-	 * i visina odnose na date realne parametre koje automobilska guma sadrzi
+	 * Atribut koji predstavlja marku i model jedne gume
 	 */
 	private String markaModel = null;
+	/**
+	 * Atribut koji predstavlja precnik jedne gume
+	 */
 	private int precnik = 0;
+	/**
+	 * Atribut koji predstavlja sirinu jedne gume
+	 */
 	private int sirina = 0;
+	/**
+	 * Atribut koji predstavlja visinu jedne gume
+	 */
 	private int visina = 0;
 
 	/**
-	 * Metoda getMarkaModel() cija je funkcija da vrati String vrednost o marki i
-	 * modelu date gume dakle vrednost koju vraca je @return String naziv modela i
-	 * marke
-	 **/
+	 * Metoda koja vraca vrednost atributa markaModel
+	 * 
+	 * @return tip povratne vrednosti je String vrednost marke i modela gume
+	 *
+	 */
 	public String getMarkaModel() {
 		return markaModel;
 	}
 
 	/**
-	 * Metoda setMarkaModel() sadrzi @param markaModel koji predstavlja marku i
-	 * model gume koji se cuva u atributu markaModel ukoliko se unese null vrednost
-	 * ili String koji ima manje od 3 karaktera metoda baca izuzuzetak @throws
-	 * RuntimeException sa odgovarajucom porukom
+	 * Metoda koja postavlja vrednost atributa markaModel
+	 * 
+	 * @param markaModel
+	 *            koji predstavlja novu vrednost marke i modela
+	 * @throws java.lang.RuntimeException
+	 *             u slucaju nedozvoljenih vrednosti(null || markaModel.length()<3)
 	 */
 	public void setMarkaModel(String markaModel) {
 		if (markaModel == null || markaModel.length() < 3)
@@ -37,19 +50,22 @@ public class AutoGuma {
 	}
 
 	/**
-	 * Metoda getPrecnik()
+	 * Metoda koja vraca vrednost atributa precnik
 	 * 
-	 * @return vraca vrednost precnika
+	 * @return tip povratne vrednosti je ceo broj- integer vrednost precnika
 	 */
 	public int getPrecnik() {
 		return precnik;
 	}
 
 	/**
-	 * Metoda setPrecnik() sadrzi @param markaModel koji predstavlja precnik gume
-	 * koji se cuva u atributu precnik ukoliko se unese vrednost manja od 13 i
-	 * vrednost veca od 22 metoda baca izuzuzetak @throws RuntimeException sa
-	 * odgovarajucom porukom
+	 * Metoda koja postavlja vrednost atributa precnik
+	 * 
+	 * @param precnik
+	 *            koja predstavlja novu vrednost precnika
+	 * @throws java.lang.RuntimeException
+	 *             u slucaju unosa nedozvoljenih vrednosti(<13 || >22)
+	 * 
 	 */
 	public void setPrecnik(int precnik) {
 		if (precnik < 13 || precnik > 22)
@@ -58,19 +74,22 @@ public class AutoGuma {
 	}
 
 	/**
-	 * Metoda getSirina()
+	 * Metoda koja vraca vrednost atributa sirina
 	 * 
-	 * @return vraca vrednost sirine
+	 * @return tip povratne vrednosti je ceo broj-integer vrednost sirine
 	 */
 	public int getSirina() {
 		return sirina;
 	}
 
 	/**
-	 * Metoda setSirina() sadrzi @param sirina koji predstavlja sirinu gume koji se
-	 * cuva u atributu sirina ukoliko se unese vrednost manja od 135 i vrednost veca
-	 * od 355 metoda baca izuzuzetak @throws RuntimeException sa odgovarajucom
-	 * porukom
+	 * Metoda koja postavlja vrednost atributa sirina
+	 * 
+	 * @param sirina
+	 *            koji predstavlja novu vrednost atributa sirina
+	 * @throws java.lang.RuntimeException
+	 *             u slucaju unosa nedozvoljenih vrednosti(<135 || >355)
+	 * 
 	 */
 	public void setSirina(int sirina) {
 		if (sirina < 135 || sirina > 355)
@@ -79,19 +98,22 @@ public class AutoGuma {
 	}
 
 	/**
-	 * Metoda getVisina()
+	 * Metoda koja vraca vrednost atributa visina
 	 * 
-	 * @return vraca vrednost visine
+	 * @return tip povratne vrednosti je ceo broj-integer vrednost visine
 	 */
 	public int getVisina() {
 		return visina;
 	}
 
 	/**
-	 * Metoda setVisina() sadrzi @param visina koji predstavlja visinu gume koji se
-	 * cuva u atributu visina ukoliko se unese vrednost manja od 25 ili vrednost
-	 * veca od 95 metoda baca izuzuzetak @throws RuntimeException sa odgovarajucom
-	 * porukom
+	 * Metoda koja postavlja vrednost atributa visina
+	 * 
+	 * @param visina
+	 *            koji predstavlja novu vrednost atributa visina
+	 * @throws java.lang.RuntimeException
+	 *             u slucaju unosa nedozvoljenih vrednosti(<25 || >95)
+	 * 
 	 */
 	public void setVisina(int visina) {
 		if (visina < 25 || visina > 95)
@@ -100,8 +122,11 @@ public class AutoGuma {
 	}
 
 	/**
-	 * Override-ovana toString() metoda koja vraca @return String sa konkretnim
-	 * podacima o gumi
+	 * Metoda koja vraca String koji prikazuje vrednosti svih prethodno navedenih
+	 * atributa
+	 * 
+	 * @return String o svim informacijama koje su vezane za marku i model, precnik,
+	 *         sirinu i visinu gume
 	 */
 	@Override
 	public String toString() {
@@ -110,13 +135,13 @@ public class AutoGuma {
 	}
 
 	/**
-	 * Override-ovanaa equals() metoda sa
+	 * Metoda koja vraca boolean vrednost u zavisnosti od toga da li su neke dve
+	 * gume jednake po svim svojim atributima
 	 * 
 	 * @param obj
-	 *            koji predstavlja objekat sa kojim se poredi
-	 * 
-	 * @return metoda vraca true vrednost ukoliko su objekti isti a false ukoliko
-	 *         nisu
+	 *            koji predstavlja objekat klase Object sa kojim se guma poredi
+	 * @return tip povratne vrednosti je boolean da li su gume iste po svim
+	 *         atributima ili ne
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -140,4 +165,5 @@ public class AutoGuma {
 			return false;
 		return true;
 	}
+
 }
